@@ -1,0 +1,99 @@
+//CODING FOR KIDS | Fall 2018 | Developers: Zach, Sinan, Alexander, Hao, Todd
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CodingForKids
+{
+    //Location of necessary arrays for CodingForKids to function.
+    class Database
+    {
+        public string[] questions;
+        public string[] choices;
+        public string[] answers;
+
+        //Loads arrays with their respective text files.
+        public void load()
+        {
+            questions = System.IO.File.ReadAllLines(@"C:\Games\CodingForKids\CodingForKids\questions.txt");
+            choices = System.IO.File.ReadAllLines(@"C:\Games\CodingForKids\CodingForKids\choices.txt");
+            answers = System.IO.File.ReadAllLines(@"C:\Games\CodingForKids\CodingForKids\answers.txt");
+        }
+    }
+
+    //The primary class
+    class CodingForKids
+    {
+        int q = 0;
+        Database datab = new Database();
+
+        public void newGame()
+        {
+            int c;
+            datab.load();
+            Console.WriteLine(datab.questions[q]);
+            c = choicePicker();
+
+            for (int i = 2; i >= 0; i--)
+            {
+                Console.WriteLine(datab.choices[c - i]);
+            }
+
+            Console.ReadKey(); //Used to simulate the pause between selecting answer | TEMP
+            //CODE TO DISPLAY RIGHT OR WRONG AND EXPLAIN IF WRONG
+            q++; //next question
+            playGame();
+        }
+
+        //After newGame sets up things playGame is used to continue the game until end or exit.
+        private void playGame()
+        {
+            //A lot of copy over from newGame
+        }
+
+        //Determines what lines of the choice array to acess based on question#.
+        private int choicePicker()
+        {
+            int i = 2;
+
+            if (q == 0)
+                return i;
+            else
+            {
+                for (int j = 1; j <= q; j++)
+                {
+                    i += 3;
+                }
+
+                return i;
+            }
+        }
+
+        //Main used to execute interface
+        static void Main(string[] args)
+        {
+            //INTERFACE
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1()); //Form1 is Interface.cs; For some reason it didnt change.
+            //INTERFACE
+            CodingForKids game = new CodingForKids();
+            game.newGame();
+            Console.ReadKey(); // Hold the window.
+        }
+    }
+
+    //Is this class even needed? Idk yet.
+    class Interface
+    {
+
+    }
+
+    //
+    class Tutorial
+    {
+
+    }
+}
