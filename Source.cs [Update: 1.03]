@@ -77,18 +77,10 @@ namespace CodingForKids
             //INTERFACE
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1()); //Form1 is Interface.cs; For some reason it didnt change.
+            Application.Run(new Interface());
             //INTERFACE
-            //CodingForKids game = new CodingForKids();
-            //game.newGame();
-            Console.ReadKey(); // Hold the window.
+            //Console.ReadKey(); // Hold the window.
         }
-    }
-
-    //Is this class even needed? Idk yet.
-    class Interface
-    {
-
     }
 
     //
